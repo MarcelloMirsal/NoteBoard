@@ -1,5 +1,5 @@
 //
-//  NoteBoardTests.swift
+//  NoteTests.swift
 //  NoteBoardTests
 //
 //  Created by Marcello Mirsal on 22/06/2018.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import NoteBoard
 
-class NotesViewControllerTests: XCTestCase {
+class NoteTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -22,6 +22,13 @@ class NotesViewControllerTests: XCTestCase {
     }
     
     
-    
+    func testSutInit(){
+        let noteText = "Hello This is my note , hello guys"
+        let noteDate = "20/01/2018"
+        let sut = Note(text: noteText , date : noteDate )
+        XCTAssertEqual(sut.text, noteText)
+        XCTAssertEqual(sut.date, noteDate)
+        XCTAssertEqual(sut.title, noteText)
+    }
     
 }
