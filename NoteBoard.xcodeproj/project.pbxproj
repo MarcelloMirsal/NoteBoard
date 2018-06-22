@@ -12,7 +12,18 @@
 		FB21169C20DC7F990067ED9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB21169A20DC7F990067ED9F /* Main.storyboard */; };
 		FB21169E20DC7F9A0067ED9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB21169D20DC7F9A0067ED9F /* Assets.xcassets */; };
 		FB2116A120DC7F9A0067ED9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB21169F20DC7F9A0067ED9F /* LaunchScreen.storyboard */; };
+		FB2116B620DC828E0067ED9F /* NotesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2116B520DC828E0067ED9F /* NotesViewControllerTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FB2116B820DC828E0067ED9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB21168B20DC7F990067ED9F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FB21169220DC7F990067ED9F;
+			remoteInfo = NoteBoard;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		FB21169320DC7F990067ED9F /* NoteBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,10 +33,20 @@
 		FB21169D20DC7F9A0067ED9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB2116A020DC7F9A0067ED9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FB2116A220DC7F9A0067ED9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB2116B320DC828E0067ED9F /* NoteBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoteBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB2116B520DC828E0067ED9F /* NotesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewControllerTests.swift; sourceTree = "<group>"; };
+		FB2116B720DC828E0067ED9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FB21169020DC7F990067ED9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB2116B020DC828E0067ED9F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				FB21169520DC7F990067ED9F /* NoteBoard */,
+				FB2116B420DC828E0067ED9F /* NoteBoardTests */,
 				FB21169420DC7F990067ED9F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				FB21169320DC7F990067ED9F /* NoteBoard.app */,
+				FB2116B320DC828E0067ED9F /* NoteBoardTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -62,6 +85,15 @@
 				FB2116A220DC7F9A0067ED9F /* Info.plist */,
 			);
 			path = NoteBoard;
+			sourceTree = "<group>";
+		};
+		FB2116B420DC828E0067ED9F /* NoteBoardTests */ = {
+			isa = PBXGroup;
+			children = (
+				FB2116B520DC828E0067ED9F /* NotesViewControllerTests.swift */,
+				FB2116B720DC828E0067ED9F /* Info.plist */,
+			);
+			path = NoteBoardTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,6 +116,24 @@
 			productReference = FB21169320DC7F990067ED9F /* NoteBoard.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FB2116B220DC828E0067ED9F /* NoteBoardTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB2116BA20DC828E0067ED9F /* Build configuration list for PBXNativeTarget "NoteBoardTests" */;
+			buildPhases = (
+				FB2116AF20DC828E0067ED9F /* Sources */,
+				FB2116B020DC828E0067ED9F /* Frameworks */,
+				FB2116B120DC828E0067ED9F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FB2116B920DC828E0067ED9F /* PBXTargetDependency */,
+			);
+			name = NoteBoardTests;
+			productName = NoteBoardTests;
+			productReference = FB2116B320DC828E0067ED9F /* NoteBoardTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -96,6 +146,10 @@
 				TargetAttributes = {
 					FB21169220DC7F990067ED9F = {
 						CreatedOnToolsVersion = 9.4.1;
+					};
+					FB2116B220DC828E0067ED9F = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = FB21169220DC7F990067ED9F;
 					};
 				};
 			};
@@ -113,6 +167,7 @@
 			projectRoot = "";
 			targets = (
 				FB21169220DC7F990067ED9F /* NoteBoard */,
+				FB2116B220DC828E0067ED9F /* NoteBoardTests */,
 			);
 		};
 /* End PBXProject section */
@@ -128,6 +183,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FB2116B120DC828E0067ED9F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -140,7 +202,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FB2116AF20DC828E0067ED9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB2116B620DC828E0067ED9F /* NotesViewControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FB2116B920DC828E0067ED9F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FB21169220DC7F990067ED9F /* NoteBoard */;
+			targetProxy = FB2116B820DC828E0067ED9F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FB21169A20DC7F990067ED9F /* Main.storyboard */ = {
@@ -312,6 +390,46 @@
 			};
 			name = Release;
 		};
+		FB2116BB20DC828E0067ED9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 45VBTWJ842;
+				INFOPLIST_FILE = NoteBoardTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MarcelloMirsal.NoteBoardTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NoteBoard.app/NoteBoard";
+			};
+			name = Debug;
+		};
+		FB2116BC20DC828E0067ED9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 45VBTWJ842;
+				INFOPLIST_FILE = NoteBoardTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MarcelloMirsal.NoteBoardTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NoteBoard.app/NoteBoard";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -329,6 +447,15 @@
 			buildConfigurations = (
 				FB2116A620DC7F9A0067ED9F /* Debug */,
 				FB2116A720DC7F9A0067ED9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FB2116BA20DC828E0067ED9F /* Build configuration list for PBXNativeTarget "NoteBoardTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB2116BB20DC828E0067ED9F /* Debug */,
+				FB2116BC20DC828E0067ED9F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
