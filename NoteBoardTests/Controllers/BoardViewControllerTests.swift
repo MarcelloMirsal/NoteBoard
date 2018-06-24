@@ -12,6 +12,7 @@ import XCTest
 class BoardViewControllerTests: XCTestCase {
     
     var sut : BoardViewController!
+    let emptyNote = Note(text: "", date: "Now")
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -48,13 +49,17 @@ class BoardViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.dateLabel.text!.isEmpty)
     }
     
-    //MARK:- TextView Delegate
+    //MARK:- TextView Delegate and inputs
     func testSutNoteTextViewDelegate_NotNil(){
         XCTAssertNotNil(sut.noteTextView.delegate)
     }
     
-   
-    
+    func testSutTextViewInputDidChange_TextViewMustEqualToNoteText(){
+        sut.note = emptyNote
+        sut.noteTextView.text = "Hello World!"
+        sut.noteTextView.delegate!.textViewDidChange!(sut.noteTextView)
+        XCTAssertEqual(sut.noteTextView.text, sut.note.text)
+    }
     
     
 }

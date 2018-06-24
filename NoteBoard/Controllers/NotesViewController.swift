@@ -8,41 +8,37 @@
 
 import UIKit
 
-protocol NoteManager {
-    func update(note : Note)
-    func reload(note: Note)
-}
-
-class NotesViewController: UITableViewController , NoteManager{
+class NotesViewController: UITableViewController , NoteManager {
+    func updateNotes(note: Note) {
+        let indexPath = IndexPath(row: 0, section: 0)
+        if note.text.isEmpty {
+            notes.remove(at: indexPath.row)
+            return
+        }
+        tableView.insertRows(at: [indexPath] , with: .automatic)
+    }
+    
     
     // MARK:- Properties
     var notes = [Note]()
     
     @IBAction func addNewNote() {
-        performSegue(withIdentifier: "addNote", sender: nil)
+        //performSegue(withIdentifier: "addNote", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addNote" {
             let boardController = segue.destination as! BoardViewController
+            let newNote = Note(text: "", date: "Now")
+            notes.insert(newNote, at: 0)
+            boardController.note = newNote
             boardController.noteViewControllerDelegate = self
-        } else if segue.identifier == "EditNote" {
+        } else if segue.identifier == "editNote" {
             let boardController = segue.destination as! BoardViewController
             boardController.noteViewControllerDelegate = self
-            let cell = sender as! UINoteCell
-            guard let cellIndex = tableView.indexPath(for: cell) else {fatalError()}
-            boardController.note = notes[cellIndex.row]
         }
     }
-    
-    // MARK:- Note Manager
-    func reload(note: Note) {
 
-    }
-    
-    func update(note: Note) {
-
-    }
 }
 
 // MARK:- Extension Tableview Delegate and DataSource
@@ -59,6 +55,7 @@ extension NotesViewController {
         cell.dateLabel.text = note.date
         return cell
     }
+
     
 }
 

@@ -67,15 +67,21 @@ class NotesViewControllerTests: XCTestCase {
         
     }
     
-    // MARK:- test passing note delegate to board Controller
-    func testSutForPassingDelegate_ShouldBeEquaulToSUT(){
-        let board = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoardViewController") as! BoardViewController
-        board.noteViewControllerDelegate = sut
-        XCTAssertEqual(sut, board.noteViewControllerDelegate)
+    // MARK: NotesViewController delegate pass
+    func testSutToPassNoteForAddNewNote_NoteShouldBeNotNil(){
+        let boardViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoardViewController") as! BoardViewController
+        let segue = UIStoryboardSegue(identifier: "addNote", source: sut, destination: boardViewController)
+       sut.prepare(for: segue, sender: nil)
+        XCTAssertNotNil(boardViewController.note)
+    }
+    
+    // MARK:- Note Manager Protocol
+    
+    func testSutIsConformingNoteManager() {
+        let noteManger : NoteManager = sut as NoteManager
+        XCTAssertNotNil(noteManger)
     }
     
     
-    
-    
-    
+
 }

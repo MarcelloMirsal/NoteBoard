@@ -14,29 +14,22 @@ class BoardViewController: UIViewController , UITextViewDelegate {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var noteTextView: UITextView!
     var note : Note!
-    weak var noteViewControllerDelegate : NotesViewController?
+    weak var noteViewControllerDelegate : NotesViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         noteTextView.becomeFirstResponder()
         noteTextView.delegate = self
-        if note == nil {
-            
-        } else {
-            
-        }
-        
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
+        noteViewControllerDelegate.updateNotes(note: note)
     }
-    
 
     func textViewDidChange(_ textView: UITextView) {
-       
+        note.text = textView.text
     }
     
     

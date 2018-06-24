@@ -54,7 +54,7 @@
                                 <connections>
                                     <outlet property="dateLabel" destination="7Ls-L1-BTm" id="hT2-Fe-CTP"/>
                                     <outlet property="titleLabel" destination="6zT-Gh-HgC" id="5pE-7Z-pmC"/>
-                                    <segue destination="RLk-HH-erC" kind="show" identifier="EditNote" id="Uf9-mj-2Py"/>
+                                    <segue destination="RLk-HH-erC" kind="show" identifier="editNote" id="Uf9-mj-2Py"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -18,6 +18,8 @@
 		FB2116C720DC973A0067ED9F /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2116C620DC973A0067ED9F /* BoardViewController.swift */; };
 		FB2116C920DC99820067ED9F /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2116C820DC99820067ED9F /* Note.swift */; };
 		FB2116CC20DC99EC0067ED9F /* NoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2116CB20DC99EC0067ED9F /* NoteTests.swift */; };
+		FB34AD8320DF7564007F8561 /* NoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB34AD8220DF7564007F8561 /* NoteManager.swift */; };
+		FB34AD8520DF757F007F8561 /* NoteManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB34AD8420DF757F007F8561 /* NoteManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		FB2116C620DC973A0067ED9F /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
 		FB2116C820DC99820067ED9F /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		FB2116CB20DC99EC0067ED9F /* NoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTests.swift; sourceTree = "<group>"; };
+		FB34AD8220DF7564007F8561 /* NoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteManager.swift; sourceTree = "<group>"; };
+		FB34AD8420DF757F007F8561 /* NoteManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,7 @@
 		FB2116CA20DC99A20067ED9F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FB34AD8220DF7564007F8561 /* NoteManager.swift */,
 				FB2116C820DC99820067ED9F /* Note.swift */,
 			);
 			path = Models;
@@ -147,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				FB2116CB20DC99EC0067ED9F /* NoteTests.swift */,
+				FB34AD8420DF757F007F8561 /* NoteManagerTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -255,6 +261,7 @@
 				FB2116C920DC99820067ED9F /* Note.swift in Sources */,
 				FB2116C120DC89A90067ED9F /* UINoteCell.swift in Sources */,
 				FB2116BE20DC843C0067ED9F /* NotesViewController.swift in Sources */,
+				FB34AD8320DF7564007F8561 /* NoteManager.swift in Sources */,
 				FB21169720DC7F990067ED9F /* AppDelegate.swift in Sources */,
 				FB2116C720DC973A0067ED9F /* BoardViewController.swift in Sources */,
 			);
@@ -265,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB2116CC20DC99EC0067ED9F /* NoteTests.swift in Sources */,
+				FB34AD8520DF757F007F8561 /* NoteManagerTests.swift in Sources */,
 				FB2116B620DC828E0067ED9F /* NotesViewControllerTests.swift in Sources */,
 				FB2116C520DC96D50067ED9F /* BoardViewControllerTests.swift in Sources */,
 			);
