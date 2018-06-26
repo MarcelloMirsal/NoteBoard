@@ -24,11 +24,13 @@ class NoteTests: XCTestCase {
     
     func testSutInit(){
         let noteText = "Hello This is my note , hello guys"
-        let noteDate = "20/01/2018"
-        let sut = Note(text: noteText , date : noteDate )
+        let noteCreateDate = Date.getCurrentDate()
+        let noteEditDate = noteCreateDate
+        let sut = Note(text: noteText, createDate: noteCreateDate)
         XCTAssertEqual(sut.text, noteText)
-        XCTAssertEqual(sut.date, noteDate)
+        XCTAssertEqual(sut.createDate, noteCreateDate)
         XCTAssertEqual(sut.title, noteText)
+        XCTAssertEqual(sut.editDate, noteEditDate)
     }
     
 }

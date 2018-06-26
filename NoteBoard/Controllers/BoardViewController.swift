@@ -13,24 +13,45 @@ class BoardViewController: UIViewController , UITextViewDelegate {
     // MARK:- Outlets
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var noteTextView: UITextView!
-    var note : Note!
+    weak var note : Note!
     weak var noteViewControllerDelegate : NotesViewController!
+    var boardMode : BoardMode = .new
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         noteTextView.becomeFirstResponder()
         noteTextView.delegate = self
+        dateLabel.text = note.createDate
+        noteTextView.text = note.text
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        noteViewControllerDelegate.updateNotes(note: note)
+        if boardMode == .new {
+            noteViewControllerDelegate.add(note: note)
+        } else {
+            noteViewControllerDelegate.update(note: note)
+        }
+        
     }
 
     func textViewDidChange(_ textView: UITextView) {
         note.text = textView.text
+        note.editDate = Date.getCurrentDate()
     }
     
     
 }
+
+
+enum BoardMode {
+    case new
+    case edit
+}
+
+
+
+
+
+

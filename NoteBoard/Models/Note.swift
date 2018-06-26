@@ -15,11 +15,13 @@ class Note {
         return text
     }
     var text: String
-    var date: String
+    let createDate: String
+    var editDate: String
     
-    init(text : String , date: String) {
-       self.text = text
-        self.date = date
+    init(text : String , createDate: String) {
+        self.text = text
+        self.createDate = createDate
+        self.editDate = createDate
     }
     
 }

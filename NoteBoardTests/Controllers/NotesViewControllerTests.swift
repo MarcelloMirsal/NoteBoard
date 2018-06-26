@@ -12,7 +12,7 @@ import XCTest
 class NotesViewControllerTests: XCTestCase {
     
     var sut : NotesViewController!
-    let sampleNote = Note(text: "Hello there , guy this is amazing", date: "10/12/2017")
+    let sampleNote = Note(text: "Hello there , guy this is amazing", createDate: Date.getCurrentDate())
     
     override func setUp() {
         super.setUp()
@@ -49,7 +49,7 @@ class NotesViewControllerTests: XCTestCase {
         sut.tableView.reloadData()
         let cell = sut.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! UINoteCell
         XCTAssertEqual(cell.titleLabel.text, sampleNote.title)
-        XCTAssertEqual(cell.dateLabel.text, sampleNote.date)
+        XCTAssertEqual(cell.dateLabel.text, sampleNote.createDate)
     }
     
     func testSutNotesArrayCount_ShouldBeEqualToNumberOfAppends(){

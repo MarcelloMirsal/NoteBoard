@@ -9,15 +9,42 @@
 import UIKit
 
 class NotesViewController: UITableViewController , NoteManager {
-    func updateNotes(note: Note) {
+    func update(note: Note) {
+        let noteIndex = notes.index { (noteItem) -> Bool in return noteItem === note}
+        if let index = noteIndex {
+            let indexPath = IndexPath(row: index, section: 0)
+            let cell = tableView.cellForRow(at: indexPath) as! UINoteCell
+            if note.text.isEmpty {
+                notes.remove(at: index)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            } else {
+                if cell.titleLabel.text == note.text {
+                    return
+                }
+                notes.remove(at: index)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                notes.insert(note, at: 0)
+                tableView.insertRows(at: [indexPath], with: .automatic)
+            }
+            
+        } else {
+            fatalError()
+        }
+        
+        tableView.reloadData()
+    }
+    
+    
+    func add(note: Note) {
         let indexPath = IndexPath(row: 0, section: 0)
         if note.text.isEmpty {
             notes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
             return
         }
-        tableView.insertRows(at: [indexPath] , with: .automatic)
+        
+        tableView.reloadData()
     }
-    
     
     // MARK:- Properties
     var notes = [Note]()
@@ -29,13 +56,19 @@ class NotesViewController: UITableViewController , NoteManager {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addNote" {
             let boardController = segue.destination as! BoardViewController
-            let newNote = Note(text: "", date: "Now")
+            let newNote = Note(text: "", createDate: Date.getCurrentDate())
             notes.insert(newNote, at: 0)
             boardController.note = newNote
             boardController.noteViewControllerDelegate = self
+            let indexPath = IndexPath(row: 0, section: 0)
+            tableView.insertRows(at: [indexPath], with: .automatic)
         } else if segue.identifier == "editNote" {
+            let cell = sender as! UINoteCell
+            guard let indexPath = tableView.indexPath(for: cell) else {fatalError()}
             let boardController = segue.destination as! BoardViewController
             boardController.noteViewControllerDelegate = self
+            boardController.boardMode = .edit
+            boardController.note = notes[indexPath.row]
         }
     }
 
@@ -52,7 +85,7 @@ extension NotesViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! UINoteCell
         let note = notes[indexPath.row]
         cell.titleLabel.text = note.title
-        cell.dateLabel.text = note.date
+        cell.dateLabel.text = note.editDate
         return cell
     }
 
