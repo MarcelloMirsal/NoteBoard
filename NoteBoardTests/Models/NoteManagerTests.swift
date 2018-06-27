@@ -14,9 +14,9 @@ class NoteManagerTests: XCTestCase {
     var navigationController : UINavigationController!
     var notesViewController : NotesViewController!
     var boardViewController : BoardViewController!
-    var sampleNote1 = Note(text: "Hello World", createDate: Date.getCurrentDate())
-    var sampleNote2 = Note(text: "doing some sketching", createDate: Date.getCurrentDate())
-    var sampleNote3 = Note(text: "this me ", createDate: Date.getCurrentDate())
+    var noteSample1 = Note(text: "Hello World", createDate: Date.getCurrentDate())
+    var noteSample2 = Note(text: "doing some sketching", createDate: Date.getCurrentDate())
+    var noteSample3 = Note(text: "this me ", createDate: Date.getCurrentDate())
     
     
     override func setUp() {
@@ -26,14 +26,14 @@ class NoteManagerTests: XCTestCase {
         navigationController = mainStoryboard.instantiateInitialViewController() as! UINavigationController
         notesViewController = navigationController.topViewController as! NotesViewController
         boardViewController = mainStoryboard.instantiateViewController(withIdentifier: "BoardViewController") as! BoardViewController
-        boardViewController.note = sampleNote1
+        boardViewController.note = noteSample1
         _ = navigationController.view
         _ = notesViewController.view
         _ = boardViewController.view
         
-        sampleNote1 = Note(text: "Hello World", createDate: Date.getCurrentDate())
-        sampleNote2 = Note(text: "doing some sketching", createDate: Date.getCurrentDate())
-        sampleNote3 = Note(text: "this me ", createDate: Date.getCurrentDate())
+        noteSample1 = Note(text: "Hello World", createDate: Date.getCurrentDate())
+        noteSample2 = Note(text: "doing some sketching", createDate: Date.getCurrentDate())
+        noteSample3 = Note(text: "this me ", createDate: Date.getCurrentDate())
     }
     
     override func tearDown() {
@@ -71,8 +71,8 @@ class NoteManagerTests: XCTestCase {
     func testNoteManagerPresentingProperNote_UIoutputShouldBeEqualToNote() {
         setupControllersForEditMode()
         XCTAssertTrue(boardViewController.boardMode == .edit)
-        XCTAssertEqual(boardViewController.note.text,sampleNote2.text)
-        XCTAssertEqual(boardViewController.dateLabel.text, sampleNote2.createDate)
+        XCTAssertEqual(boardViewController.note.text,noteSample2.text)
+        XCTAssertEqual(boardViewController.dateLabel.text, noteSample2.createDate)
     }
     
     // MARK:- test edited note
@@ -86,18 +86,35 @@ class NoteManagerTests: XCTestCase {
         let selectedIndexPath = IndexPath(row: 0, section: 0)
         let cell = notesViewController.tableView.cellForRow(at: selectedIndexPath) as! UINoteCell
         XCTAssertTrue(boardViewController.boardMode == .edit)
-        XCTAssertEqual(sampleNote2.text, sampleText)
+        XCTAssertEqual(noteSample2.text, sampleText)
         XCTAssertEqual(cell.titleLabel.text, sampleText)
     }
     
     func setupControllersForEditMode() {
         let storyboardSegue = UIStoryboardSegue(identifier: "editNote", source: notesViewController, destination: boardViewController)
-        notesViewController.notes = [sampleNote1 , sampleNote2 , sampleNote3]
+        notesViewController.notes = [noteSample1 , noteSample2 , noteSample3]
         notesViewController.tableView.reloadData()
         let selectedIndexPath = IndexPath(row: 1, section: 0)
         let cell = notesViewController.tableView.cellForRow(at: selectedIndexPath) as! UINoteCell
         notesViewController.prepare(for: storyboardSegue, sender: cell)
         boardViewController.boardMode = .edit
+    }
+    
+    // MARK:- test deleting note
+    func testNoteManagerDeletingNote_NotesShouldBeEqualToZero() {
+        notesViewController.notes.append(noteSample1)
+        notesViewController.tableView.reloadData()
+        let indexPath = IndexPath(row: 0, section: 0)
+        notesViewController.delete(note: noteSample1 , at : indexPath)
+        XCTAssertEqual(notesViewController.notes.count, 0)
+    }
+    
+    func testNoteManagerDeletingNote_NotesTableViewCellsShouldBeEqualToZero() {
+        notesViewController.notes.append(noteSample1)
+        notesViewController.tableView.reloadData()
+        let indexPath = IndexPath(row: 0, section: 0)
+        notesViewController.delete(note: noteSample1 , at : indexPath)
+        XCTAssertEqual(notesViewController.tableView.numberOfRows(inSection: 0), 0)
     }
     
     

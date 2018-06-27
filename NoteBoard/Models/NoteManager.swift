@@ -12,4 +12,5 @@ protocol NoteManager {
     var notes: [Note] {get set}
     func add(note: Note)
     func update(note: Note)
+    func delete(note: Note , at indexPath : IndexPath)
 }
