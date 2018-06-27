@@ -9,6 +9,7 @@
 import UIKit
 
 protocol NoteManager {
+    var notes: [Note] {get set}
     func add(note: Note)
     func update(note: Note)
 }

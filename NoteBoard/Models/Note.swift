@@ -11,8 +11,9 @@ import UIKit
 class Note {
     
     var title: String {
-        // TODO:- Making some logic here to slice the text for the title
-        return text
+        // MARK:- Making some logic here to slice the text for the title
+        guard let index = text.index(of: "\n") else {return text} 
+        return String(text[..<index])
     }
     var text: String
     let createDate: String

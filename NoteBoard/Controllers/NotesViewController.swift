@@ -9,43 +9,6 @@
 import UIKit
 
 class NotesViewController: UITableViewController , NoteManager {
-    func update(note: Note) {
-        let noteIndex = notes.index { (noteItem) -> Bool in return noteItem === note}
-        if let index = noteIndex {
-            let indexPath = IndexPath(row: index, section: 0)
-            let cell = tableView.cellForRow(at: indexPath) as! UINoteCell
-            if note.text.isEmpty {
-                notes.remove(at: index)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            } else {
-                if cell.titleLabel.text == note.text {
-                    return
-                }
-                notes.remove(at: index)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                notes.insert(note, at: 0)
-                tableView.insertRows(at: [indexPath], with: .automatic)
-            }
-            
-        } else {
-            fatalError()
-        }
-        
-        tableView.reloadData()
-    }
-    
-    
-    func add(note: Note) {
-        let indexPath = IndexPath(row: 0, section: 0)
-        if note.text.isEmpty {
-            notes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            return
-        }
-        
-        tableView.reloadData()
-    }
-    
     // MARK:- Properties
     var notes = [Note]()
     
@@ -89,6 +52,47 @@ extension NotesViewController {
         return cell
     }
 
+    
+}
+// MARK:- implementing the NoteManager Protocol
+extension NotesViewController {
+    
+    func update(note: Note) {
+        let noteIndex = notes.index { (noteItem) -> Bool in return noteItem === note}
+        if let index = noteIndex {
+            let indexPath = IndexPath(row: index, section: 0)
+            let cell = tableView.cellForRow(at: indexPath) as! UINoteCell
+            if note.text.isEmpty {
+                notes.remove(at: index)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            } else {
+                if cell.titleLabel.text == note.text {
+                    return
+                }
+                notes.remove(at: index)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                notes.insert(note, at: 0)
+                tableView.insertRows(at: [indexPath], with: .automatic)
+            }
+            
+        } else {
+            fatalError()
+        }
+        
+        tableView.reloadData()
+    }
+    
+    func add(note: Note) {
+        let indexPath = IndexPath(row: 0, section: 0)
+        if note.text.isEmpty {
+            notes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            return
+        }
+        
+        tableView.reloadData()
+    }
+    
     
 }
 

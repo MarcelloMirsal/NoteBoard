@@ -44,7 +44,7 @@ class NoteManagerTests: XCTestCase {
     
     // MARK:- Test NoteManager To add a new note
     
-    func testNoteManagerToCreateNewNote_NoteShouldBeEqualInBoardAndNotes(){
+    func testNoteManagerCreateNewNote_NoteShouldBeEqualInBoardAndNotes(){
         let storyboardSegue = UIStoryboardSegue(identifier: "addNote", source: notesViewController, destination: boardViewController)
         notesViewController.prepare(for: storyboardSegue, sender: nil)
         boardViewController.noteTextView.text = "Hello World!"
@@ -53,7 +53,7 @@ class NoteManagerTests: XCTestCase {
         XCTAssertEqual(notesViewController.notes[0].text, "Hello World!")
     }
     
-    func testNoteMangerIsPresentingTheNewNote_NewNoteShouldBeFirstOrdered(){
+    func testNoteMangerPresentingTheNewNote_NewNoteShouldBeFirstOrdered(){
         let storyboardSegue = UIStoryboardSegue(identifier: "addNote", source: notesViewController, destination: boardViewController)
         notesViewController.prepare(for: storyboardSegue, sender: nil)
         boardViewController.noteTextView.text = "Hello World!"
@@ -68,7 +68,7 @@ class NoteManagerTests: XCTestCase {
     
     // MARK:- testing the edit mode
     
-    func testNoteManagerIsPresentingProperNote_UIoutputShouldBeEqualToNote() {
+    func testNoteManagerPresentingProperNote_UIoutputShouldBeEqualToNote() {
         setupControllersForEditMode()
         XCTAssertTrue(boardViewController.boardMode == .edit)
         XCTAssertEqual(boardViewController.note.text,sampleNote2.text)
@@ -76,7 +76,7 @@ class NoteManagerTests: XCTestCase {
     }
     
     // MARK:- test edited note
-    func testNoteManagerIsUpdatingValues(){
+    func testNoteManagerIsUpdatingValues_EditedNoteShouldBeEqualToChanges(){
         setupControllersForEditMode()
         let sampleText = "edit this note"
         boardViewController.noteTextView.text = sampleText

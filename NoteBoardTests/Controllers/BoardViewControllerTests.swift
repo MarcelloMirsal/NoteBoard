@@ -29,32 +29,44 @@ class BoardViewControllerTests: XCTestCase {
         super.tearDown()
     }
     
-    // MARK:- sut and outlets Nils
-    func testSut_isNotNill(){
+    // MARK:- test BoardViewController nils in init
+    func testBoardController_ShouldBeNotNill(){
         XCTAssertNotNil(sut)
     }
     
-    func testSutNotesViewControllerDelegate_IsNotNill(){
-        XCTAssertNotNil(sut.noteViewControllerDelegate)
-    }
-    
-    func testSutOutlets_IsNotNil(){
+    // MARK:- test BoardViewController Outlets
+    func testBoardControllerOutlets_ShouldBeNotNil(){
         XCTAssertNotNil(sut.dateLabel)
         XCTAssertNotNil(sut.noteTextView)
     }
     
-    func testNote_ShouldBeNotNil() {
+    // MARK:- test noteViewControllerDelegate delegate
+    func testBoardControllerNotesViewControllerDelegate_ShouldBeNotNill(){
+        XCTAssertNotNil(sut.noteViewControllerDelegate)
+    }
+    
+    // MARK:- test BoardViewController note
+    func testBoardControllerNote_ShouldBeNotNil() {
         XCTAssertNotNil(sut.note)
     }
     
-    func testSutMode_ShouldBeNew(){
-        XCTAssertTrue(sut.boardMode == .new)
+    // MARK:- test BoardViewController mode for new note or edit note
+    func testBoardControllerMode_ShouldBeNewForEmptyNoteText(){
+        if sut.note.text.isEmpty {
+            XCTAssertTrue(sut.boardMode == .new) // by default
+        }
     }
     
-    // MARK:- configuring sut for new Note
-
+    func testBoardControllerMode_ShouldBeEditForNoteText(){
+        sut.note = sampleNote
+        sut.boardMode = .edit
+        if sut.note.text.isEmpty == false {
+            XCTAssertTrue(sut.boardMode == .edit)
+        }
+    }
     
-    func testSutForPresentingNoteEditDate_ShouldBeEqualToNote() {
+    // MARK:- updating the UI from note Model
+    func testBoardControllerPresentingNoteEditDate_ShouldBeEqualToNote() {
         sut.note = sampleNote
         sut.noteTextView.text = sut.note.text
         sut.dateLabel.text = sut.note.createDate
@@ -63,11 +75,11 @@ class BoardViewControllerTests: XCTestCase {
     }
     
     //MARK:- TextView Delegate and inputs
-    func testSutNoteTextViewDelegate_NotNil(){
+    func testBoardControllerNoteTextViewDelegate_ShouldBeNotNil(){
         XCTAssertNotNil(sut.noteTextView.delegate)
     }
     
-    func testSutTextViewInputDidChange_TextViewMustEqualToNoteText(){
+    func testBoardControllerTextViewInputDidChange_NoteTextViewMustEqualToNoteText(){
         sut.note = sampleNote
         sut.noteTextView.text = "Hello World!"
         sut.noteTextView.delegate!.textViewDidChange!(sut.noteTextView)

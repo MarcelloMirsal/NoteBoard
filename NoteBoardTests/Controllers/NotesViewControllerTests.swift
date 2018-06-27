@@ -30,21 +30,23 @@ class NotesViewControllerTests: XCTestCase {
     }
     
     // MARK:- test NotesViewController init
-    func testSut_ShouldBeNotNil() {
+    func testNotesController_ShouldBeNotNil() {
         XCTAssertNotNil(sut)
     }
     // MARK:- test NotesViewController Tableview delegate and datasource
-    func testSutTableViewDelegate_ShouldBeNotNil() {
+    func testNotesControllerTableViewDelegate_ShouldBeNotNil() {
         XCTAssertNotNil(sut.tableView.delegate)
         XCTAssertTrue(sut.tableView.delegate is NotesViewController)
     }
     
-    func testSutTableViewDataSource_ShouldBeNotNil() {
+    func testNotesControllerTableViewDataSource_ShouldBeNotNil() {
         XCTAssertNotNil(sut.tableView.delegate)
         XCTAssertTrue(sut.tableView.delegate is NotesViewController)
     }
     
-    func testSutNotesArray_ShouldPresentRowWithSamplevalue(){
+    // MARK:- test NoteViewController notes array
+    
+    func testNotesControllerNotesArray_ShouldPresentRowWithSamplevalue(){
         sut.notes.append(sampleNote)
         sut.tableView.reloadData()
         let cell = sut.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! UINoteCell
@@ -52,14 +54,14 @@ class NotesViewControllerTests: XCTestCase {
         XCTAssertEqual(cell.dateLabel.text, sampleNote.createDate)
     }
     
-    func testSutNotesArrayCount_ShouldBeEqualToNumberOfAppends(){
+    func testNotesControllerNotesArrayCount_ShouldBeEqualToNumberOfAppends(){
         sut.notes.append(sampleNote)
         sut.tableView.reloadData()
         XCTAssertEqual(sut.notes.count, 1)
     }
     
     // MARK:- test NotesViewController Tableview registered Cell
-    func testSutRegisteredCell_ShouldBeNotNil(){
+    func testNotesControllerRegisteredCell_ShouldBeNotNil(){
         sut.notes.append(sampleNote)
         sut.tableView.reloadData()
         let cell = sut.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? UINoteCell
@@ -68,14 +70,14 @@ class NotesViewControllerTests: XCTestCase {
     }
     
     // MARK: NotesViewController delegate pass
-    func testSutToPassNoteForAddNewNote_NoteShouldBeNotNil(){
+    func testNotesControllerPassNewNoteToAddNewNote_NoteShouldBeNotNil(){
         let boardViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoardViewController") as! BoardViewController
         let segue = UIStoryboardSegue(identifier: "addNote", source: sut, destination: boardViewController)
        sut.prepare(for: segue, sender: nil)
         XCTAssertNotNil(boardViewController.note)
     }
     
-    // MARK:- Note Manager Protocol
+    // MARK:- test confirmation of Note Manager Protocol
     
     func testSutIsConformingNoteManager() {
         let noteManger : NoteManager = sut as NoteManager
