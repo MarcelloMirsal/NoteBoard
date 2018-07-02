@@ -38,6 +38,8 @@ class BoardViewControllerTests: XCTestCase {
     func testBoardControllerOutlets_ShouldBeNotNil(){
         XCTAssertNotNil(sut.dateLabel)
         XCTAssertNotNil(sut.noteTextView)
+        XCTAssertNotNil(sut.boardToolView)
+        XCTAssertNotNil(sut.noteTextView.inputAccessoryView) // noteTextView inputAccessoryView
     }
     
     // MARK:- test noteViewControllerDelegate delegate

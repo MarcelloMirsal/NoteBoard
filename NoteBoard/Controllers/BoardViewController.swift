@@ -15,6 +15,7 @@ class BoardViewController: UIViewController , UITextViewDelegate {
     @IBOutlet weak var noteTextView: UITextView!
     weak var note : Note!
     weak var noteViewControllerDelegate : NotesViewController!
+    let boardToolView = UIBoardToolsView(frame: CGRect(x: 0, y: 0, width: 48, height: 48) )
     var boardMode : BoardMode = .new
     
     override func viewDidLoad() {
@@ -24,6 +25,8 @@ class BoardViewController: UIViewController , UITextViewDelegate {
         noteTextView.delegate = self
         dateLabel.text = note.createDate
         noteTextView.text = note.text
+        noteTextView.inputAccessoryView = boardToolView
+        boardToolView.textView = noteTextView
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -33,7 +36,6 @@ class BoardViewController: UIViewController , UITextViewDelegate {
         } else {
             noteViewControllerDelegate.update(note: note)
         }
-        
     }
 
     func textViewDidChange(_ textView: UITextView) {
@@ -41,7 +43,9 @@ class BoardViewController: UIViewController , UITextViewDelegate {
         note.editDate = Date.getCurrentDate()
     }
     
-    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.typingAttributes = boardToolView.nextTypingAttributes
+    }
 }
 
 
