@@ -12,15 +12,18 @@ class Note {
     
     var title: String {
         // MARK:- Making some logic here to slice the text for the title
-        guard let index = text.index(of: "\n") else {return text} 
-        return String(text[..<index])
+        guard let index = attributedText.string.index(of: "\n") else {
+            return attributedText.string
+            
+        }
+        return String(attributedText.string[..<index])
     }
-    var text: String
+    var attributedText: NSAttributedString
     let createDate: String
     var editDate: String
     
-    init(text : String , createDate: String) {
-        self.text = text
+    init(attributedText : NSAttributedString , createDate: String) {
+        self.attributedText = attributedText
         self.createDate = createDate
         self.editDate = createDate
     }

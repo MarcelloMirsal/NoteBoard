@@ -20,7 +20,7 @@ class NotesViewController: UITableViewController , NoteManager {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addNote" {
             let boardController = segue.destination as! BoardViewController
-            let newNote = Note(text: "", createDate: Date.getCurrentDate())
+            let newNote = Note(attributedText: NSAttributedString(), createDate: Date.getCurrentDate())
             notes.insert(newNote, at: 0)
             boardController.note = newNote
             boardController.noteViewControllerDelegate = self
@@ -71,11 +71,11 @@ extension NotesViewController {
         if let index = noteIndex {
             let indexPath = IndexPath(row: index, section: 0)
             let cell = tableView.cellForRow(at: indexPath) as! UINoteCell
-            if note.text.isEmpty {
+            if note.attributedText.string.isEmpty {
                 notes.remove(at: index)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             } else {
-                if cell.titleLabel.text == note.text {
+                if cell.titleLabel.text == note.attributedText.string {
                     return
                 }
                 notes.remove(at: index)
@@ -93,7 +93,7 @@ extension NotesViewController {
     
     func add(note: Note) {
         let indexPath = IndexPath(row: 0, section: 0)
-        if note.text.isEmpty {
+        if note.attributedText.string.isEmpty {
             notes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             return

@@ -24,7 +24,7 @@ class BoardViewController: UIViewController , UITextViewDelegate {
         noteTextView.becomeFirstResponder()
         noteTextView.delegate = self
         dateLabel.text = note.createDate
-        noteTextView.text = note.text
+        noteTextView.attributedText = note.attributedText
         noteTextView.inputAccessoryView = boardToolView
         boardToolView.textView = noteTextView
     }
@@ -39,7 +39,7 @@ class BoardViewController: UIViewController , UITextViewDelegate {
     }
 
     func textViewDidChange(_ textView: UITextView) {
-        note.text = textView.text
+        note.attributedText = textView.attributedText
         note.editDate = Date.getCurrentDate()
     }
     

@@ -12,8 +12,9 @@ import XCTest
 class NotesViewControllerTests: XCTestCase {
     
     var sut : NotesViewController!
-    let sampleNote = Note(text: "Hello there , guy this is amazing", createDate: Date.getCurrentDate())
+    let sampleNote = Note(attributedText: NSAttributedString(string: "Hello there , guy this is amazing") , createDate: Date.getCurrentDate())
     
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.

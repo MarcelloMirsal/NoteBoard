@@ -18,7 +18,7 @@ class NoteTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        sut = Note(text: noteText, createDate: noteCreateDate)
+        sut = Note(attributedText: NSAttributedString(string: noteText), createDate: noteCreateDate)
     }
     
     override func tearDown() {
@@ -39,22 +39,22 @@ class NoteTests: XCTestCase {
     
     
     func testNoteInit_ShouldBeConstructedWithProperValues(){
-        XCTAssertEqual(sut.text, noteText)
+        XCTAssertEqual(sut.attributedText, NSAttributedString(string: noteText ) )
         XCTAssertEqual(sut.createDate, noteCreateDate)
         XCTAssertEqual(sut.editDate, noteCreateDate)
     }
     
     func testNoteTitle_ShouldBeSlicedFromNoteTextToFirstNewLine(){
         let sampleNoteText = "Hello This is my note\n hello guys"
-        sut.text = sampleNoteText
+        sut.attributedText = NSAttributedString(string: sampleNoteText)
         XCTAssertEqual("Hello This is my note", sut.title)
         
         let sampleNoteText2 = "The Movie \n Batman"
-        sut.text = sampleNoteText2
+        sut.attributedText = NSAttributedString(string: sampleNoteText2)
         XCTAssertEqual("The Movie ", sut.title)
         
         let sampleNoteText3 = "Batman Dark Knight"
-        sut.text = sampleNoteText3
+        sut.attributedText = NSAttributedString(string: sampleNoteText3)
         XCTAssertEqual("Batman Dark Knight", sut.title)
         
         

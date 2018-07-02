@@ -12,7 +12,7 @@ import XCTest
 class BoardViewControllerTests: XCTestCase {
     
     var sut : BoardViewController!
-    let sampleNote = Note(text: "Hello there", createDate: Date.getCurrentDate())
+    let sampleNote = Note(attributedText: NSAttributedString(string: "Hello there"), createDate: Date.getCurrentDate())
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -54,7 +54,7 @@ class BoardViewControllerTests: XCTestCase {
     
     // MARK:- test BoardViewController mode for new note or edit note
     func testBoardControllerMode_ShouldBeNewForEmptyNoteText(){
-        if sut.note.text.isEmpty {
+        if sut.note.attributedText.string.isEmpty {
             XCTAssertTrue(sut.boardMode == .new) // by default
         }
     }
@@ -62,7 +62,7 @@ class BoardViewControllerTests: XCTestCase {
     func testBoardControllerMode_ShouldBeEditForNoteText(){
         sut.note = sampleNote
         sut.boardMode = .edit
-        if sut.note.text.isEmpty == false {
+        if sut.note.attributedText.string.isEmpty == false {
             XCTAssertTrue(sut.boardMode == .edit)
         }
     }
@@ -70,10 +70,10 @@ class BoardViewControllerTests: XCTestCase {
     // MARK:- updating the UI from note Model
     func testBoardControllerPresentingNoteEditDate_ShouldBeEqualToNote() {
         sut.note = sampleNote
-        sut.noteTextView.text = sut.note.text
+        sut.noteTextView.attributedText = sut.note.attributedText
         sut.dateLabel.text = sut.note.createDate
         XCTAssertEqual(sut.dateLabel.text, sut.note.createDate)
-        XCTAssertEqual(sut.noteTextView.text, sut.note.text)
+        XCTAssertEqual(sut.noteTextView.attributedText.string, sut.note.attributedText.string)
     }
     
     //MARK:- TextView Delegate and inputs
@@ -85,7 +85,7 @@ class BoardViewControllerTests: XCTestCase {
         sut.note = sampleNote
         sut.noteTextView.text = "Hello World!"
         sut.noteTextView.delegate!.textViewDidChange!(sut.noteTextView)
-        XCTAssertEqual(sut.noteTextView.text, sut.note.text)
+        XCTAssertEqual(sut.noteTextView.attributedText, sut.note.attributedText)
     }
     
     

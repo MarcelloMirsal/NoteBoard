@@ -14,9 +14,10 @@ class NoteManagerTests: XCTestCase {
     var navigationController : UINavigationController!
     var notesViewController : NotesViewController!
     var boardViewController : BoardViewController!
-    var noteSample1 = Note(text: "Hello World", createDate: Date.getCurrentDate())
-    var noteSample2 = Note(text: "doing some sketching", createDate: Date.getCurrentDate())
-    var noteSample3 = Note(text: "this me ", createDate: Date.getCurrentDate())
+    var noteSample1 = Note(attributedText: NSAttributedString(string: "Hello World"), createDate: Date.getCurrentDate())
+    var noteSample2 = Note(attributedText: NSAttributedString(string: "doing some sketching"), createDate: Date.getCurrentDate())
+    var noteSample3 = Note(attributedText: NSAttributedString(string: "this me "), createDate: Date.getCurrentDate())
+    
     
     
     override func setUp() {
@@ -31,9 +32,9 @@ class NoteManagerTests: XCTestCase {
         _ = notesViewController.view
         _ = boardViewController.view
         
-        noteSample1 = Note(text: "Hello World", createDate: Date.getCurrentDate())
-        noteSample2 = Note(text: "doing some sketching", createDate: Date.getCurrentDate())
-        noteSample3 = Note(text: "this me ", createDate: Date.getCurrentDate())
+        noteSample1 = Note(attributedText: NSAttributedString(string: "Hello World"), createDate: Date.getCurrentDate())
+        noteSample2 = Note(attributedText: NSAttributedString(string: "doing some sketching"), createDate: Date.getCurrentDate())
+        noteSample3 = Note(attributedText: NSAttributedString(string: "this me "), createDate: Date.getCurrentDate())
     }
     
     override func tearDown() {
@@ -50,7 +51,7 @@ class NoteManagerTests: XCTestCase {
         boardViewController.noteTextView.text = "Hello World!"
         boardViewController.textViewDidChange(boardViewController.noteTextView)
         notesViewController.navigationController?.popViewController(animated: true)
-        XCTAssertEqual(notesViewController.notes[0].text, "Hello World!")
+        XCTAssertEqual(notesViewController.notes[0].attributedText.string, "Hello World!")
     }
     
     func testNoteMangerPresentingTheNewNote_NewNoteShouldBeFirstOrdered(){
@@ -71,7 +72,7 @@ class NoteManagerTests: XCTestCase {
     func testNoteManagerPresentingProperNote_UIoutputShouldBeEqualToNote() {
         setupControllersForEditMode()
         XCTAssertTrue(boardViewController.boardMode == .edit)
-        XCTAssertEqual(boardViewController.note.text,noteSample2.text)
+        XCTAssertEqual(boardViewController.note.attributedText,noteSample2.attributedText)
         XCTAssertEqual(boardViewController.dateLabel.text, noteSample2.createDate)
     }
     
@@ -86,7 +87,7 @@ class NoteManagerTests: XCTestCase {
         let selectedIndexPath = IndexPath(row: 0, section: 0)
         let cell = notesViewController.tableView.cellForRow(at: selectedIndexPath) as! UINoteCell
         XCTAssertTrue(boardViewController.boardMode == .edit)
-        XCTAssertEqual(noteSample2.text, sampleText)
+        XCTAssertEqual(noteSample2.attributedText.string, sampleText)
         XCTAssertEqual(cell.titleLabel.text, sampleText)
     }
     

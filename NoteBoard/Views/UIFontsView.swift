@@ -74,7 +74,6 @@ class UIFontsView : UIView {
     
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        print("didMoveToSuperview")
         backgroundColor = .white
         
         addSubview(contentsView)
