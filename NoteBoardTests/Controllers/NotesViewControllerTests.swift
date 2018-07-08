@@ -11,10 +11,9 @@ import XCTest
 
 class NotesViewControllerTests: XCTestCase {
     
+    var dataManager = DataManager(modelName: "NoteBoard")
     var sut : NotesViewController!
-    let sampleNote = Note(attributedText: NSAttributedString(string: "Hello there , guy this is amazing") , createDate: Date.getCurrentDate())
-    
-
+    var sampleNote : Note!
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -22,6 +21,7 @@ class NotesViewControllerTests: XCTestCase {
         
         sut = rootNavigationController.topViewController as! NotesViewController
         _ = sut.view
+        sampleNote = Note(attributedText: NSAttributedString(string: "Hello There"), createDate: Date(), viewContext: dataManager.viewContext)
         
     }
     
@@ -52,7 +52,7 @@ class NotesViewControllerTests: XCTestCase {
         sut.tableView.reloadData()
         let cell = sut.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! UINoteCell
         XCTAssertEqual(cell.titleLabel.text, sampleNote.title)
-        XCTAssertEqual(cell.dateLabel.text, sampleNote.createDate)
+        XCTAssertEqual(cell.dateLabel.text, sampleNote.createDate?.getCurrentDate())
     }
     
     func testNotesControllerNotesArrayCount_ShouldBeEqualToNumberOfAppends(){

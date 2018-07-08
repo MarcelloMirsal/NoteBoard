@@ -9,10 +9,11 @@
 import UIKit
 
 extension Date {
-    static func getCurrentDate(format : String = "MM/dd/yyyy h:mm a") -> String {
+    func getCurrentDate(format : String = "MM/dd/yyyy h:mm a") -> String {
         let date = Date()
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = format
         return dateFormat.string(from: date)
     }
+    
 }

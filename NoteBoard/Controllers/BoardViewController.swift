@@ -23,14 +23,15 @@ class BoardViewController: UIViewController , UITextViewDelegate {
         navigationItem.largeTitleDisplayMode = .never
         noteTextView.becomeFirstResponder()
         noteTextView.delegate = self
-        dateLabel.text = note.createDate
-        noteTextView.attributedText = note.attributedText
+        dateLabel.text = note.editDate?.getCurrentDate()
+        noteTextView.attributedText = note.attributedText as! NSAttributedString
         noteTextView.inputAccessoryView = boardToolView
         boardToolView.textView = noteTextView
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        note.setNoteTitle()
         if boardMode == .new {
             noteViewControllerDelegate.add(note: note)
         } else {
@@ -40,7 +41,7 @@ class BoardViewController: UIViewController , UITextViewDelegate {
 
     func textViewDidChange(_ textView: UITextView) {
         note.attributedText = textView.attributedText
-        note.editDate = Date.getCurrentDate()
+        note.editDate = Date()
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

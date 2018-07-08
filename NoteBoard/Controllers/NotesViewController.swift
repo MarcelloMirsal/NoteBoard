@@ -11,6 +11,7 @@ import UIKit
 class NotesViewController: UITableViewController , NoteManager {
     
     // MARK:- Properties
+    let dataManager = DataManager(modelName: "NoteBoard")
     var notes = [Note]()
     
     @IBAction func addNewNote() {
@@ -20,7 +21,7 @@ class NotesViewController: UITableViewController , NoteManager {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addNote" {
             let boardController = segue.destination as! BoardViewController
-            let newNote = Note(attributedText: NSAttributedString(), createDate: Date.getCurrentDate())
+            let newNote = Note(attributedText: NSAttributedString(), createDate: Date() , viewContext: dataManager.viewContext)
             notes.insert(newNote, at: 0)
             boardController.note = newNote
             boardController.noteViewControllerDelegate = self
@@ -49,7 +50,7 @@ extension NotesViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! UINoteCell
         let note = notes[indexPath.row]
         cell.titleLabel.text = note.title
-        cell.dateLabel.text = note.editDate
+        cell.dateLabel.text = note.editDate?.getCurrentDate()
         return cell
     }
 
@@ -71,11 +72,12 @@ extension NotesViewController {
         if let index = noteIndex {
             let indexPath = IndexPath(row: index, section: 0)
             let cell = tableView.cellForRow(at: indexPath) as! UINoteCell
-            if note.attributedText.string.isEmpty {
+            let attributedText = note.attributedText as! NSAttributedString
+            if attributedText.string.isEmpty {
                 notes.remove(at: index)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             } else {
-                if cell.titleLabel.text == note.attributedText.string {
+                if cell.titleLabel.text == attributedText.string {
                     return
                 }
                 notes.remove(at: index)
@@ -93,7 +95,8 @@ extension NotesViewController {
     
     func add(note: Note) {
         let indexPath = IndexPath(row: 0, section: 0)
-        if note.attributedText.string.isEmpty {
+        let attributedText = note.attributedText as! NSAttributedString
+        if attributedText.string.isEmpty {
             notes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             return

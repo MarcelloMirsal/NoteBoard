@@ -11,13 +11,16 @@ import XCTest
 
 class BoardViewControllerTests: XCTestCase {
     
+    let dataManager = DataManager(modelName: "NoteBoard")
     var sut : BoardViewController!
-    let sampleNote = Note(attributedText: NSAttributedString(string: "Hello there"), createDate: Date.getCurrentDate())
+    var sampleNote: Note!
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         sut = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoardViewController") as! BoardViewController
         let notesViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NotesViewController") as! NotesViewController
+        
+        sampleNote = Note(attributedText: NSAttributedString(string: "i am coool "), createDate: Date(), viewContext: dataManager.viewContext)
         sut.noteViewControllerDelegate = notesViewController
         sut.note = sampleNote
         _ = sut.view
@@ -54,7 +57,8 @@ class BoardViewControllerTests: XCTestCase {
     
     // MARK:- test BoardViewController mode for new note or edit note
     func testBoardControllerMode_ShouldBeNewForEmptyNoteText(){
-        if sut.note.attributedText.string.isEmpty {
+        let attributedText = sut.note.attributedText as!  NSAttributedString
+        if attributedText.string.isEmpty {
             XCTAssertTrue(sut.boardMode == .new) // by default
         }
     }
@@ -62,7 +66,8 @@ class BoardViewControllerTests: XCTestCase {
     func testBoardControllerMode_ShouldBeEditForNoteText(){
         sut.note = sampleNote
         sut.boardMode = .edit
-        if sut.note.attributedText.string.isEmpty == false {
+         let attributedString = sut.note.attributedText as! NSAttributedString
+        if attributedString.string.isEmpty == false {
             XCTAssertTrue(sut.boardMode == .edit)
         }
     }
@@ -70,10 +75,11 @@ class BoardViewControllerTests: XCTestCase {
     // MARK:- updating the UI from note Model
     func testBoardControllerPresentingNoteEditDate_ShouldBeEqualToNote() {
         sut.note = sampleNote
-        sut.noteTextView.attributedText = sut.note.attributedText
-        sut.dateLabel.text = sut.note.createDate
-        XCTAssertEqual(sut.dateLabel.text, sut.note.createDate)
-        XCTAssertEqual(sut.noteTextView.attributedText.string, sut.note.attributedText.string)
+        sut.noteTextView.attributedText = sut.note.attributedText as! NSAttributedString
+        sut.dateLabel.text = sut.note.createDate?.getCurrentDate()
+        let attributedString = sut.note.attributedText as! NSAttributedString
+        XCTAssertEqual(sut.dateLabel.text, sut.note.createDate?.getCurrentDate())
+        XCTAssertEqual(attributedString.string, sut.noteTextView.attributedText.string)
     }
     
     //MARK:- TextView Delegate and inputs

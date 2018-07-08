@@ -11,12 +11,14 @@ import XCTest
 
 class NoteManagerTests: XCTestCase {
     
+    var dataManager = DataManager(modelName: "NoteBoard")
+    
     var navigationController : UINavigationController!
     var notesViewController : NotesViewController!
     var boardViewController : BoardViewController!
-    var noteSample1 = Note(attributedText: NSAttributedString(string: "Hello World"), createDate: Date.getCurrentDate())
-    var noteSample2 = Note(attributedText: NSAttributedString(string: "doing some sketching"), createDate: Date.getCurrentDate())
-    var noteSample3 = Note(attributedText: NSAttributedString(string: "this me "), createDate: Date.getCurrentDate())
+    var noteSample1 : Note!
+    var noteSample2 : Note!
+    var noteSample3 : Note!
     
     
     
@@ -27,14 +29,16 @@ class NoteManagerTests: XCTestCase {
         navigationController = mainStoryboard.instantiateInitialViewController() as! UINavigationController
         notesViewController = navigationController.topViewController as! NotesViewController
         boardViewController = mainStoryboard.instantiateViewController(withIdentifier: "BoardViewController") as! BoardViewController
+        
+        noteSample1 = Note(attributedText: NSAttributedString(string: "Hello There"), createDate: Date(), viewContext: dataManager.viewContext)
+        
+        noteSample2 = Note(attributedText: NSAttributedString(string: "My name is "), createDate: Date(), viewContext: dataManager.viewContext)
+        noteSample3 = Note(attributedText: NSAttributedString(string: "House"), createDate: Date(), viewContext: dataManager.viewContext)
         boardViewController.note = noteSample1
         _ = navigationController.view
         _ = notesViewController.view
         _ = boardViewController.view
         
-        noteSample1 = Note(attributedText: NSAttributedString(string: "Hello World"), createDate: Date.getCurrentDate())
-        noteSample2 = Note(attributedText: NSAttributedString(string: "doing some sketching"), createDate: Date.getCurrentDate())
-        noteSample3 = Note(attributedText: NSAttributedString(string: "this me "), createDate: Date.getCurrentDate())
     }
     
     override func tearDown() {
@@ -51,7 +55,8 @@ class NoteManagerTests: XCTestCase {
         boardViewController.noteTextView.text = "Hello World!"
         boardViewController.textViewDidChange(boardViewController.noteTextView)
         notesViewController.navigationController?.popViewController(animated: true)
-        XCTAssertEqual(notesViewController.notes[0].attributedText.string, "Hello World!")
+        let attributedString = notesViewController.notes[0].attributedText as! NSAttributedString
+        XCTAssertEqual(attributedString.string, "Hello World!")
     }
     
     func testNoteMangerPresentingTheNewNote_NewNoteShouldBeFirstOrdered(){
@@ -73,7 +78,7 @@ class NoteManagerTests: XCTestCase {
         setupControllersForEditMode()
         XCTAssertTrue(boardViewController.boardMode == .edit)
         XCTAssertEqual(boardViewController.note.attributedText,noteSample2.attributedText)
-        XCTAssertEqual(boardViewController.dateLabel.text, noteSample2.createDate)
+        XCTAssertEqual(boardViewController.dateLabel.text, noteSample2.createDate?.getCurrentDate())
     }
     
     // MARK:- test edited note
@@ -87,7 +92,7 @@ class NoteManagerTests: XCTestCase {
         let selectedIndexPath = IndexPath(row: 0, section: 0)
         let cell = notesViewController.tableView.cellForRow(at: selectedIndexPath) as! UINoteCell
         XCTAssertTrue(boardViewController.boardMode == .edit)
-        XCTAssertEqual(noteSample2.attributedText.string, sampleText)
+        XCTAssertEqual((noteSample2.attributedText as! NSAttributedString).string, sampleText)
         XCTAssertEqual(cell.titleLabel.text, sampleText)
     }
     

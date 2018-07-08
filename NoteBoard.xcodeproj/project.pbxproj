@@ -16,12 +16,15 @@
 		FB2116C120DC89A90067ED9F /* UINoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2116C020DC89A90067ED9F /* UINoteCell.swift */; };
 		FB2116C520DC96D50067ED9F /* BoardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2116C420DC96D50067ED9F /* BoardViewControllerTests.swift */; };
 		FB2116C720DC973A0067ED9F /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2116C620DC973A0067ED9F /* BoardViewController.swift */; };
-		FB2116C920DC99820067ED9F /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2116C820DC99820067ED9F /* Note.swift */; };
+		FB2116C920DC99820067ED9F /* Note Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2116C820DC99820067ED9F /* Note Extension.swift */; };
 		FB2116CC20DC99EC0067ED9F /* NoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2116CB20DC99EC0067ED9F /* NoteTests.swift */; };
 		FB34AD8320DF7564007F8561 /* NoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB34AD8220DF7564007F8561 /* NoteManager.swift */; };
 		FB34AD8520DF757F007F8561 /* NoteManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB34AD8420DF757F007F8561 /* NoteManagerTests.swift */; };
 		FB94BD1820E8D0DD0022CFCE /* UIBoardToolsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB94BD1720E8D0DD0022CFCE /* UIBoardToolsViewTests.swift */; };
 		FB94BD1B20E8D1C00022CFCE /* UIBoardToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB94BD1A20E8D1C00022CFCE /* UIBoardToolsView.swift */; };
+		FBC69F1420F26DB9008D69A8 /* NoteBoard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBC69F1220F26DB9008D69A8 /* NoteBoard.xcdatamodeld */; };
+		FBC69F1620F271D5008D69A8 /* DataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC69F1520F271D5008D69A8 /* DataManagerTests.swift */; };
+		FBC69F1920F2724B008D69A8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC69F1820F2724B008D69A8 /* DataManager.swift */; };
 		FBF40EC720E9E2A50067E68A /* UIFontsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF40EC620E9E2A50067E68A /* UIFontsViewTests.swift */; };
 		FBF40EC920E9E4D60067E68A /* UIFontsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF40EC820E9E4D60067E68A /* UIFontsView.swift */; };
 		FBFF830120E1AF1D00FC2141 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFF830020E1AF1C00FC2141 /* Extensions.swift */; };
@@ -51,12 +54,15 @@
 		FB2116C020DC89A90067ED9F /* UINoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINoteCell.swift; sourceTree = "<group>"; };
 		FB2116C420DC96D50067ED9F /* BoardViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewControllerTests.swift; sourceTree = "<group>"; };
 		FB2116C620DC973A0067ED9F /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
-		FB2116C820DC99820067ED9F /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		FB2116C820DC99820067ED9F /* Note Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note Extension.swift"; sourceTree = "<group>"; };
 		FB2116CB20DC99EC0067ED9F /* NoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTests.swift; sourceTree = "<group>"; };
 		FB34AD8220DF7564007F8561 /* NoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteManager.swift; sourceTree = "<group>"; };
 		FB34AD8420DF757F007F8561 /* NoteManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteManagerTests.swift; sourceTree = "<group>"; };
 		FB94BD1720E8D0DD0022CFCE /* UIBoardToolsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBoardToolsViewTests.swift; sourceTree = "<group>"; };
 		FB94BD1A20E8D1C00022CFCE /* UIBoardToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBoardToolsView.swift; sourceTree = "<group>"; };
+		FBC69F1320F26DB9008D69A8 /* NoteBoard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NoteBoard.xcdatamodel; sourceTree = "<group>"; };
+		FBC69F1520F271D5008D69A8 /* DataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
+		FBC69F1820F2724B008D69A8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FBF40EC620E9E2A50067E68A /* UIFontsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontsViewTests.swift; sourceTree = "<group>"; };
 		FBF40EC820E9E4D60067E68A /* UIFontsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontsView.swift; sourceTree = "<group>"; };
 		FBFF830020E1AF1C00FC2141 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -103,6 +109,7 @@
 			children = (
 				FB21169620DC7F990067ED9F /* AppDelegate.swift */,
 				FB2116CA20DC99A20067ED9F /* Models */,
+				FBC69F1A20F2724E008D69A8 /* Data Manager */,
 				FB2116C220DC89AD0067ED9F /* Views */,
 				FB2116BF20DC87CB0067ED9F /* Controllers */,
 				FBC69F1120F26C41008D69A8 /* storyboards and assets */,
@@ -114,6 +121,7 @@
 		FB2116B420DC828E0067ED9F /* NoteBoardTests */ = {
 			isa = PBXGroup;
 			children = (
+				FBC69F1720F271D9008D69A8 /* Data Manager */,
 				FB2116B720DC828E0067ED9F /* Info.plist */,
 				FB2116CD20DC99F00067ED9F /* Models */,
 				FB2116C320DC96BA0067ED9F /* Controllers */,
@@ -154,7 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				FB34AD8220DF7564007F8561 /* NoteManager.swift */,
-				FB2116C820DC99820067ED9F /* Note.swift */,
+				FB2116C820DC99820067ED9F /* Note Extension.swift */,
+				FBC69F1220F26DB9008D69A8 /* NoteBoard.xcdatamodeld */,
 				FBFF830020E1AF1C00FC2141 /* Extensions.swift */,
 			);
 			path = Models;
@@ -186,6 +195,22 @@
 				FB21169F20DC7F9A0067ED9F /* LaunchScreen.storyboard */,
 			);
 			path = "storyboards and assets";
+			sourceTree = "<group>";
+		};
+		FBC69F1720F271D9008D69A8 /* Data Manager */ = {
+			isa = PBXGroup;
+			children = (
+				FBC69F1520F271D5008D69A8 /* DataManagerTests.swift */,
+			);
+			path = "Data Manager";
+			sourceTree = "<group>";
+		};
+		FBC69F1A20F2724E008D69A8 /* Data Manager */ = {
+			isa = PBXGroup;
+			children = (
+				FBC69F1820F2724B008D69A8 /* DataManager.swift */,
+			);
+			path = "Data Manager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,13 +314,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB2116C920DC99820067ED9F /* Note.swift in Sources */,
+				FB2116C920DC99820067ED9F /* Note Extension.swift in Sources */,
 				FB2116C120DC89A90067ED9F /* UINoteCell.swift in Sources */,
 				FB2116BE20DC843C0067ED9F /* NotesViewController.swift in Sources */,
 				FB94BD1B20E8D1C00022CFCE /* UIBoardToolsView.swift in Sources */,
 				FB34AD8320DF7564007F8561 /* NoteManager.swift in Sources */,
 				FBF40EC920E9E4D60067E68A /* UIFontsView.swift in Sources */,
+				FBC69F1420F26DB9008D69A8 /* NoteBoard.xcdatamodeld in Sources */,
 				FB21169720DC7F990067ED9F /* AppDelegate.swift in Sources */,
+				FBC69F1920F2724B008D69A8 /* DataManager.swift in Sources */,
 				FB2116C720DC973A0067ED9F /* BoardViewController.swift in Sources */,
 				FBFF830120E1AF1D00FC2141 /* Extensions.swift in Sources */,
 			);
@@ -311,6 +338,7 @@
 				FB94BD1820E8D0DD0022CFCE /* UIBoardToolsViewTests.swift in Sources */,
 				FB2116C520DC96D50067ED9F /* BoardViewControllerTests.swift in Sources */,
 				FBF40EC720E9E2A50067E68A /* UIFontsViewTests.swift in Sources */,
+				FBC69F1620F271D5008D69A8 /* DataManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +593,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FBC69F1220F26DB9008D69A8 /* NoteBoard.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FBC69F1320F26DB9008D69A8 /* NoteBoard.xcdatamodel */,
+			);
+			currentVersion = FBC69F1320F26DB9008D69A8 /* NoteBoard.xcdatamodel */;
+			path = NoteBoard.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FB21168B20DC7F990067ED9F /* Project object */;
 }

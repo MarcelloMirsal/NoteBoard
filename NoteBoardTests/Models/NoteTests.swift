@@ -11,14 +11,15 @@ import XCTest
 
 class NoteTests: XCTestCase {
     
+    let dataManager = DataManager(modelName: "NoteBoard")
     var sut: Note!
     let noteText = "Hello This is my note hello guys"
-    let noteCreateDate = Date.getCurrentDate()
+    let noteCreateDate = Date()
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        sut = Note(attributedText: NSAttributedString(string: noteText), createDate: noteCreateDate)
+        sut = Note(attributedText: NSAttributedString(string: noteText), createDate: noteCreateDate, viewContext: dataManager.viewContext)
     }
     
     override func tearDown() {
@@ -34,7 +35,7 @@ class NoteTests: XCTestCase {
     
     
     func testNoteCreateDateAndEditDate_ShouldBeEqual() {
-        XCTAssertEqual(sut.editDate, noteCreateDate)
+        XCTAssertEqual(sut.editDate?.getCurrentDate(), noteCreateDate.getCurrentDate())
     }
     
     
@@ -47,14 +48,17 @@ class NoteTests: XCTestCase {
     func testNoteTitle_ShouldBeSlicedFromNoteTextToFirstNewLine(){
         let sampleNoteText = "Hello This is my note\n hello guys"
         sut.attributedText = NSAttributedString(string: sampleNoteText)
+        sut.setNoteTitle()
         XCTAssertEqual("Hello This is my note", sut.title)
         
         let sampleNoteText2 = "The Movie \n Batman"
         sut.attributedText = NSAttributedString(string: sampleNoteText2)
+        sut.setNoteTitle()
         XCTAssertEqual("The Movie ", sut.title)
         
         let sampleNoteText3 = "Batman Dark Knight"
         sut.attributedText = NSAttributedString(string: sampleNoteText3)
+        sut.setNoteTitle()
         XCTAssertEqual("Batman Dark Knight", sut.title)
         
         
