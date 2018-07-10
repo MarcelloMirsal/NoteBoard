@@ -7,109 +7,142 @@
 //
 
 import UIKit
+import CoreData
 
-class NotesViewController: UITableViewController , NoteManager {
+class NotesViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+    
     
     // MARK:- Properties
     let dataManager = DataManager(modelName: "NoteBoard")
-    var notes = [Note]()
+    var fetchResultsController : NSFetchedResultsController<Note>!
+    
+    
+    // MARK:- Methods and Actions
+    fileprivate func setupFetchResultsController() {
+        let fetchRequest : NSFetchRequest<Note> = Note.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "editDate", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchResultsController = NSFetchedResultsController<Note>.init(fetchRequest: fetchRequest, managedObjectContext: dataManager.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchResultsController.delegate = self
+        do {
+            try fetchResultsController.performFetch()
+        } catch {
+            fatalError("error fetch results")
+        }
+    }
+    
+    func removeEmptyNote(){
+        guard let lastWorkingNote = fetchResultsController.sections?[0].objects?.first as? Note else {
+            return
+        }
+        if (lastWorkingNote.attributedText as! NSAttributedString).string.isEmpty {
+            dataManager.viewContext.delete(lastWorkingNote)
+        } else {
+            tableView.reloadRows(at: [IndexPath(row: 0, section: 0) ], with: .none)
+        }
+    }
     
     @IBAction func addNewNote() {
-        //performSegue(withIdentifier: "addNote", sender: nil)
+        
     }
+    
+    // MARK:- viewController Delegate
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        dataManager.loadStore(completion: nil)
+        setupFetchResultsController()
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        removeEmptyNote()
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addNote" {
             let boardController = segue.destination as! BoardViewController
-            let newNote = Note(attributedText: NSAttributedString(), createDate: Date() , viewContext: dataManager.viewContext)
-            notes.insert(newNote, at: 0)
+            let newNote = Note(attributedText: NSAttributedString(), createDate: Date() , viewContext:
+                dataManager.viewContext)
             boardController.note = newNote
             boardController.noteViewControllerDelegate = self
-            let indexPath = IndexPath(row: 0, section: 0)
-            tableView.insertRows(at: [indexPath], with: .automatic)
+            
         } else if segue.identifier == "editNote" {
             let cell = sender as! UINoteCell
             guard let indexPath = tableView.indexPath(for: cell) else {fatalError()}
             let boardController = segue.destination as! BoardViewController
             boardController.noteViewControllerDelegate = self
-            boardController.boardMode = .edit
-            boardController.note = notes[indexPath.row]
+            boardController.note = fetchResultsController.object(at: indexPath)
         }
     }
-
 }
+
 
 // MARK:- Extension Tableview Delegate and DataSource
 
 extension NotesViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return fetchResultsController.sections?.count ?? 1
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notes.count
+        return fetchResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! UINoteCell
-        let note = notes[indexPath.row]
-        cell.titleLabel.text = note.title
+        let note = fetchResultsController.object(at: indexPath)
         cell.dateLabel.text = note.editDate?.getCurrentDate()
+        
+        guard let attributedString = note.attributedText as? NSAttributedString else {
+            return cell
+        }
+        cell.titleLabel.attributedText = attributedString.string.count >= 50 ? attributedString.attributedSubstring(from: NSRange.init(location: 0, length: 50) ) : attributedString
+        // if theres no text at all
+        if attributedString.string.isEmpty {cell.titleLabel.text = "New Note"}
         return cell
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (delAction, indexPath) in
-            weak var weakSelf = self
-            weakSelf!.delete(note: weakSelf!.notes[indexPath.row] , at: indexPath)
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { [weak self] (delAction, indexPath) in
+            let noteToDelete = self?.fetchResultsController.object(at: indexPath)
+            self?.dataManager.viewContext.delete(noteToDelete!)
         }
         return [deleteAction]
     }
 
-    
 }
-// MARK:- implementing the NoteManager Protocol
+
+
+// MARK:- implementing fetchResultController Delegate
 extension NotesViewController {
     
-    func update(note: Note) {
-        let noteIndex = notes.index { (noteItem) -> Bool in return noteItem === note}
-        if let index = noteIndex {
-            let indexPath = IndexPath(row: index, section: 0)
-            let cell = tableView.cellForRow(at: indexPath) as! UINoteCell
-            let attributedText = note.attributedText as! NSAttributedString
-            if attributedText.string.isEmpty {
-                notes.remove(at: index)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            } else {
-                if cell.titleLabel.text == attributedText.string {
-                    return
-                }
-                notes.remove(at: index)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                notes.insert(note, at: 0)
-                tableView.insertRows(at: [indexPath], with: .automatic)
-            }
-            
-        } else {
-            fatalError()
-        }
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
-        tableView.reloadData()
-    }
-    
-    func add(note: Note) {
-        let indexPath = IndexPath(row: 0, section: 0)
-        let attributedText = note.attributedText as! NSAttributedString
-        if attributedText.string.isEmpty {
-            notes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            return
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+        case .update :
+            tableView.reloadRows(at: [indexPath!], with: .fade)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+        case .move:
+            tableView.moveRow(at: indexPath!, to: newIndexPath!)
         }
-        
-        tableView.reloadData()
     }
-    
-    func delete(note: Note , at indexPath: IndexPath) {
-        notes.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
-    }
-    
     
 }
+
+
+
+
+
+
 

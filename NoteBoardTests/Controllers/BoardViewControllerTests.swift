@@ -55,23 +55,6 @@ class BoardViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.note)
     }
     
-    // MARK:- test BoardViewController mode for new note or edit note
-    func testBoardControllerMode_ShouldBeNewForEmptyNoteText(){
-        let attributedText = sut.note.attributedText as!  NSAttributedString
-        if attributedText.string.isEmpty {
-            XCTAssertTrue(sut.boardMode == .new) // by default
-        }
-    }
-    
-    func testBoardControllerMode_ShouldBeEditForNoteText(){
-        sut.note = sampleNote
-        sut.boardMode = .edit
-         let attributedString = sut.note.attributedText as! NSAttributedString
-        if attributedString.string.isEmpty == false {
-            XCTAssertTrue(sut.boardMode == .edit)
-        }
-    }
-    
     // MARK:- updating the UI from note Model
     func testBoardControllerPresentingNoteEditDate_ShouldBeEqualToNote() {
         sut.note = sampleNote
@@ -86,13 +69,5 @@ class BoardViewControllerTests: XCTestCase {
     func testBoardControllerNoteTextViewDelegate_ShouldBeNotNil(){
         XCTAssertNotNil(sut.noteTextView.delegate)
     }
-    
-    func testBoardControllerTextViewInputDidChange_NoteTextViewMustEqualToNoteText(){
-        sut.note = sampleNote
-        sut.noteTextView.text = "Hello World!"
-        sut.noteTextView.delegate!.textViewDidChange!(sut.noteTextView)
-        XCTAssertEqual(sut.noteTextView.attributedText, sut.note.attributedText)
-    }
-    
     
 }

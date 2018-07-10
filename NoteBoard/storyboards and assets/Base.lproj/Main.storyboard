@@ -85,13 +85,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="97e-0x-Tcy">
-                                <rect key="frame" x="0.0" y="164" width="375" height="614"/>
+                                <rect key="frame" x="0.0" y="112" width="375" height="666"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4J-3I-LGG">
-                                <rect key="frame" x="0.0" y="140" width="375" height="24"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="oDu-gO-W29"/>
                                 </constraints>
@@ -112,6 +112,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ezk-8M-bfs"/>
                     </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="jQh-0Z-XXJ"/>
                     <connections>
                         <outlet property="dateLabel" destination="p4J-3I-LGG" id="4b1-Qz-KDQ"/>
                         <outlet property="noteTextView" destination="97e-0x-Tcy" id="XYu-IX-bxT"/>
@@ -141,6 +142,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Uf9-mj-2Py"/>
+        <segue reference="BLm-5g-Qc7"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -20,6 +20,9 @@ extension Note {
     
     func setNoteTitle() {
         let attributedText = self.attributedText as! NSAttributedString
+        if attributedText.string.count >= 25 {
+            self.title = attributedText.attributedSubstring(from: NSRange.init(location: 0, length: 25)).string
+        }
         guard let index = attributedText.string.index(of: "\n") else {
             self.title = attributedText.string
             return

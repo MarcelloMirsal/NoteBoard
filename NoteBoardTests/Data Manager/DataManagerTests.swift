@@ -33,6 +33,14 @@ class DataManagerTests: XCTestCase {
     func testViewContext_ShouldBeEqualToPersistenceContainerContext(){
         XCTAssertEqual(sut.persistentContainer.viewContext, sut.viewContext)
     }
+    
+    func testLoadingStore_ShouldLoaded(){
+        var isLoaded = false
+        sut.loadStore {
+            isLoaded = true
+        }
+        XCTAssertTrue(isLoaded)
+    }
 
     
 }

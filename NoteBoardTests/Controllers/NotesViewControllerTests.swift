@@ -7,22 +7,23 @@
 //
 
 import XCTest
+import CoreData
 @testable import NoteBoard
 
-class NotesViewControllerTests: XCTestCase {
+class NotesViewControllerTests: XCTestCase , NSFetchedResultsControllerDelegate {
     
-    var dataManager = DataManager(modelName: "NoteBoard")
     var sut : NotesViewController!
     var sampleNote : Note!
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        sampleNote = nil
         let rootNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UINavigationController
         
         sut = rootNavigationController.topViewController as! NotesViewController
         _ = sut.view
-        sampleNote = Note(attributedText: NSAttributedString(string: "Hello There"), createDate: Date(), viewContext: dataManager.viewContext)
-        
+        _ = sut.tableView
     }
     
     override func tearDown() {
@@ -47,27 +48,17 @@ class NotesViewControllerTests: XCTestCase {
     
     // MARK:- test NoteViewController notes array
     
-    func testNotesControllerNotesArray_ShouldPresentRowWithSamplevalue(){
-        sut.notes.append(sampleNote)
-        sut.tableView.reloadData()
-        let cell = sut.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! UINoteCell
-        XCTAssertEqual(cell.titleLabel.text, sampleNote.title)
-        XCTAssertEqual(cell.dateLabel.text, sampleNote.createDate?.getCurrentDate())
+    func testFetchResultsController_ShouldPresentRowWithSampleValue(){
+        
     }
     
-    func testNotesControllerNotesArrayCount_ShouldBeEqualToNumberOfAppends(){
-        sut.notes.append(sampleNote)
-        sut.tableView.reloadData()
-        XCTAssertEqual(sut.notes.count, 1)
+    func testFetchResultsControllerCount_ShouldBeEqualToNumberOfAppends(){
+
     }
     
     // MARK:- test NotesViewController Tableview registered Cell
     func testNotesControllerRegisteredCell_ShouldBeNotNil(){
-        sut.notes.append(sampleNote)
-        sut.tableView.reloadData()
-        let cell = sut.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? UINoteCell
-        XCTAssertNotNil(cell)
-        
+
     }
     
     // MARK: NotesViewController delegate pass
@@ -78,13 +69,33 @@ class NotesViewControllerTests: XCTestCase {
         XCTAssertNotNil(boardViewController.note)
     }
     
-    // MARK:- test confirmation of Note Manager Protocol
     
-    func testSutIsConformingNoteManager() {
-        let noteManger : NoteManager = sut as NoteManager
-        XCTAssertNotNil(noteManger)
+    // MARK:- test for data persistence
+    func testFetchResultsController_ShouldBeNotNil(){
+        XCTAssertNotNil(sut.fetchResultsController)
     }
     
+    func testFetchResultControllerDelegate_ShouldBeEqualToSut(){
+        XCTAssertTrue(sut.fetchResultsController.delegate === sut)
+    }
     
 
 }
+
+
+// MARK:- Mock up for testing insert , delete and update
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

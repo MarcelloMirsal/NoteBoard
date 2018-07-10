@@ -18,8 +18,6 @@
 		FB2116C720DC973A0067ED9F /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2116C620DC973A0067ED9F /* BoardViewController.swift */; };
 		FB2116C920DC99820067ED9F /* Note Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2116C820DC99820067ED9F /* Note Extension.swift */; };
 		FB2116CC20DC99EC0067ED9F /* NoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2116CB20DC99EC0067ED9F /* NoteTests.swift */; };
-		FB34AD8320DF7564007F8561 /* NoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB34AD8220DF7564007F8561 /* NoteManager.swift */; };
-		FB34AD8520DF757F007F8561 /* NoteManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB34AD8420DF757F007F8561 /* NoteManagerTests.swift */; };
 		FB94BD1820E8D0DD0022CFCE /* UIBoardToolsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB94BD1720E8D0DD0022CFCE /* UIBoardToolsViewTests.swift */; };
 		FB94BD1B20E8D1C00022CFCE /* UIBoardToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB94BD1A20E8D1C00022CFCE /* UIBoardToolsView.swift */; };
 		FBC69F1420F26DB9008D69A8 /* NoteBoard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBC69F1220F26DB9008D69A8 /* NoteBoard.xcdatamodeld */; };
@@ -56,8 +54,6 @@
 		FB2116C620DC973A0067ED9F /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
 		FB2116C820DC99820067ED9F /* Note Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note Extension.swift"; sourceTree = "<group>"; };
 		FB2116CB20DC99EC0067ED9F /* NoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTests.swift; sourceTree = "<group>"; };
-		FB34AD8220DF7564007F8561 /* NoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteManager.swift; sourceTree = "<group>"; };
-		FB34AD8420DF757F007F8561 /* NoteManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteManagerTests.swift; sourceTree = "<group>"; };
 		FB94BD1720E8D0DD0022CFCE /* UIBoardToolsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBoardToolsViewTests.swift; sourceTree = "<group>"; };
 		FB94BD1A20E8D1C00022CFCE /* UIBoardToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBoardToolsView.swift; sourceTree = "<group>"; };
 		FBC69F1320F26DB9008D69A8 /* NoteBoard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NoteBoard.xcdatamodel; sourceTree = "<group>"; };
@@ -121,8 +117,8 @@
 		FB2116B420DC828E0067ED9F /* NoteBoardTests */ = {
 			isa = PBXGroup;
 			children = (
-				FBC69F1720F271D9008D69A8 /* Data Manager */,
 				FB2116B720DC828E0067ED9F /* Info.plist */,
+				FBC69F1720F271D9008D69A8 /* Data Manager */,
 				FB2116CD20DC99F00067ED9F /* Models */,
 				FB2116C320DC96BA0067ED9F /* Controllers */,
 				FB94BD1920E8D0E20022CFCE /* Views */,
@@ -161,7 +157,6 @@
 		FB2116CA20DC99A20067ED9F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FB34AD8220DF7564007F8561 /* NoteManager.swift */,
 				FB2116C820DC99820067ED9F /* Note Extension.swift */,
 				FBC69F1220F26DB9008D69A8 /* NoteBoard.xcdatamodeld */,
 				FBFF830020E1AF1C00FC2141 /* Extensions.swift */,
@@ -173,7 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				FB2116CB20DC99EC0067ED9F /* NoteTests.swift */,
-				FB34AD8420DF757F007F8561 /* NoteManagerTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -318,7 +312,6 @@
 				FB2116C120DC89A90067ED9F /* UINoteCell.swift in Sources */,
 				FB2116BE20DC843C0067ED9F /* NotesViewController.swift in Sources */,
 				FB94BD1B20E8D1C00022CFCE /* UIBoardToolsView.swift in Sources */,
-				FB34AD8320DF7564007F8561 /* NoteManager.swift in Sources */,
 				FBF40EC920E9E4D60067E68A /* UIFontsView.swift in Sources */,
 				FBC69F1420F26DB9008D69A8 /* NoteBoard.xcdatamodeld in Sources */,
 				FB21169720DC7F990067ED9F /* AppDelegate.swift in Sources */,
@@ -333,7 +326,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB2116CC20DC99EC0067ED9F /* NoteTests.swift in Sources */,
-				FB34AD8520DF757F007F8561 /* NoteManagerTests.swift in Sources */,
 				FB2116B620DC828E0067ED9F /* NotesViewControllerTests.swift in Sources */,
 				FB94BD1820E8D0DD0022CFCE /* UIBoardToolsViewTests.swift in Sources */,
 				FB2116C520DC96D50067ED9F /* BoardViewControllerTests.swift in Sources */,
