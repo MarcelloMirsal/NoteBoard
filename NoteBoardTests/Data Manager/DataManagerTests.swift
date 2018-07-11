@@ -41,6 +41,5 @@ class DataManagerTests: XCTestCase {
         }
         XCTAssertTrue(isLoaded)
     }
-
     
 }

@@ -12,16 +12,18 @@ import CoreData
 
 class NotesViewControllerTests: XCTestCase , NSFetchedResultsControllerDelegate {
     
+    var dataManager = DataManager(modelName: "NoteBoard")
     var sut : NotesViewController!
     var sampleNote : Note!
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        dataManager.loadStore(completion: nil)
         sampleNote = nil
         let rootNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UINavigationController
-        
         sut = rootNavigationController.topViewController as! NotesViewController
+        sut.dataManager = dataManager
         _ = sut.view
         _ = sut.tableView
     }

@@ -13,7 +13,7 @@ class NotesViewController: UITableViewController, NSFetchedResultsControllerDele
     
     
     // MARK:- Properties
-    let dataManager = DataManager(modelName: "NoteBoard")
+    var dataManager: DataManager!
     var fetchResultsController : NSFetchedResultsController<Note>!
     
     
@@ -49,7 +49,6 @@ class NotesViewController: UITableViewController, NSFetchedResultsControllerDele
     // MARK:- viewController Delegate
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataManager.loadStore(completion: nil)
         setupFetchResultsController()
     }
     
