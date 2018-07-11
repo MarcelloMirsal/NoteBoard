@@ -20,7 +20,7 @@ class BoardViewController: UIViewController , UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         noteTextView.delegate = self
-        dateLabel.text = note.editDate?.getCurrentDate()
+        dateLabel.text = note.createDate?.getCurrentDate()
         noteTextView.attributedText = note.attributedText as! NSAttributedString
         noteTextView.inputAccessoryView = boardToolView
     }

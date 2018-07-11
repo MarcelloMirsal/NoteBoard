@@ -34,7 +34,6 @@ class UIBoardToolsViewTests: XCTestCase {
     func testProperties_ShouldBeNotNil(){
         XCTAssertNotNil(sut.fontButton)
         XCTAssertNotNil(sut.nextTypingAttributes)
-        XCTAssertNotNil(sut.imageButton)
         XCTAssertNotNil(sut.fontsView)
     }
     

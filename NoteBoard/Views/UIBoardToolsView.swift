@@ -23,13 +23,6 @@ class UIBoardToolsView: UIView {
         return button
     }()
     
-    lazy var imageButton : UIButton = {
-        let button = UIButton(type: UIButtonType.contactAdd)
-        button.tintColor = .black
-        button.backgroundColor = .clear
-        return button
-    }()
-    
     let fontsView = UIFontsView()
     
     weak var textView : UITextView?
@@ -46,7 +39,7 @@ class UIBoardToolsView: UIView {
     
     // MARK:- Methods
     func setupViews(){
-        let stackView = UIStackView(arrangedSubviews: [fontButton , imageButton])
+        let stackView = UIStackView(arrangedSubviews: [fontButton])
         self.backgroundColor = UIColor(displayP3Red: 210/255, green: 212/255, blue: 218/255, alpha: 1)
         stackView.distribution = .fillProportionally
         stackView.axis = .horizontal
